@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  productservice:
+    image: productservice:latest
+    build:
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    networks:
+      - microservices_network
+
+  orderservice:
+    image: orderservice:latest
+    build:
+      context: ./OrderService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+    networks:
+      - microservices_network
+
+networks:
+  microservices_network:
+    driver: bridge
